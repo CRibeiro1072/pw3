@@ -5,10 +5,11 @@
 <table class="table table-responsive-xl">
         <tr>
             <td>#ID</td>
-            <td>Status</td>
             <td>Cliente</td>
-            <td>aparelho</td>
-            <td>Técnico</td>
+            <td>Aparelho</td>
+            <td>Marca</td>
+            <td>Modelo</td>
+            <td>Serial</td>
             <td>Defeito Reclamado</td>
             <td>Ações</td>
         </tr>
@@ -17,10 +18,11 @@
 
             <tr>
                 <td>{{ $service->id }}</td>
-                <td>{{ $service->status }}</td>
                 <td>{{ $service->customer->fullName}}</td>
-                <td>{{ $service->gadget->equipment }}</td>
-                <td>{{ $service->expert->fullName }}</td>
+                <td>{{ $service->device->description }}</td>
+                <td>{{ $service->brand->description }}</td>
+                <td>{{ $service->template->description }}</td>
+                <td>{{ $service->serial }}</td>
                 <td>{{ $service->claimedDefect }}</td>
                 <td>
                     <form action="{{ route('service.destroy', ['service' => $service->id]) }}"method="post">

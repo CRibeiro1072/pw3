@@ -1,7 +1,7 @@
 @extends('home')
 
 @section('content')
-    <h1>Edição de Produto</h1>
+    <h3>Edição de Produto</h3>
     <form action="{{ route('product.update', ['product' => $product->id]) }}" method="post">
         @csrf
         @method('PUT')

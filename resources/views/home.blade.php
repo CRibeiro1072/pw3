@@ -3,6 +3,7 @@
 
 <head>
 
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -44,7 +45,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="home">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Painel de Controle</span></a>
         </li>
@@ -75,9 +76,22 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('gadget.index') }}">
+            <a class="nav-link" href="{{ route('device.index') }}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Aparelhos</span></a>
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('brand.index') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Marcas</span></a>
+        </li>
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('template.index') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Modelos</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
@@ -159,8 +173,9 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Nome do usuario</span>
-{{--                            {{ $LoggedUserInfo->name }}--}}
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Usuario logado</span>
+                            {{--                            {{ $LoggedUserInfo->name }}--}}
+                            {{--                            {{$user = \App\Models\User::findOrFail(session()->get('LoggedUser'))}}--}}
                             <img class="img-profile rounded-circle"
                                  src="{{asset('img/undraw_profile.svg')}}">
                         </a>
@@ -173,6 +188,7 @@
                             </a>
                         </div>
                     </li>
+{{--                    @yield('usuario')--}}
 
                 </ul>
 
@@ -181,6 +197,10 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
+{{--                <div class="container-lg">--}}
+{{--                    <img src="{{ asset('img/img.png') }}" alt="">--}}
+{{--                </div>--}}
+
 
                 <!-- Page Heading -->
                 <!-- Aqui vou adicionar um recurso para introduzir sempre neste lugar os forms que eu criar -->

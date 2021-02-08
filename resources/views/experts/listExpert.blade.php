@@ -1,7 +1,7 @@
 @extends('home')
 
 @section('content')
-    <h1>Visualização de Técnico</h1>
+    <h3>Visualização de Técnico</h3>
     <form>
         <div class="row">
             <div class="col-12">

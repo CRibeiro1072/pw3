@@ -1,7 +1,7 @@
 @extends('home')
 
 @section('content')
-    <h1>Edição de Cliente</h1>
+    <h3>Edição de Cliente</h3>
     <form action="{{ route('customer.update', ['customer' => $customer->id]) }}" method="post">
         @csrf
         @method('PUT')

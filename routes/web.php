@@ -11,8 +11,10 @@ Route::post('check', [UserAuthController::class, 'check'])->name('user.check');
 Route::get('home', [UserAuthController::class, 'home'])->middleware('isLogged');
 Route::get('logout', [UserAuthController::class, 'logout']);
 
-Route::resource('clientes', App\Http\Controllers\CustomerController::class)->names('customer')->parameters(['clientes' => 'customer'])->middleware('isLogged');;
-Route::resource('tecnicos', App\Http\Controllers\ExpertController::class)->names('expert')->parameters(['tecnicos' => 'expert'])->middleware('isLogged');;
-Route::resource('produtos', App\Http\Controllers\ProductController::class)->names('product')->parameters(['produtos' => 'product'])->middleware('isLogged');;
-Route::resource('aparelhos', App\Http\Controllers\GadgetController::class)->names('gadget')->parameters(['aparelhos' => 'gadget'])->middleware('isLogged');;
-Route::resource('servicos', App\Http\Controllers\ServiceController::class)->names('service')->parameters(['servicos' => 'service'])->middleware('isLogged');;
+Route::resource('clientes', App\Http\Controllers\CustomerController::class)->names('customer')->parameters(['clientes' => 'customer'])->middleware('isLogged');
+Route::resource('tecnicos', App\Http\Controllers\ExpertController::class)->names('expert')->parameters(['tecnicos' => 'expert'])->middleware('isLogged');
+Route::resource('produtos', App\Http\Controllers\ProductController::class)->names('product')->parameters(['produtos' => 'product'])->middleware('isLogged');
+Route::resource('servicos', App\Http\Controllers\ServiceController::class)->names('service')->parameters(['servicos' => 'service'])->middleware('isLogged');
+Route::resource('aparelhos', App\Http\Controllers\DeviceController::class)->names('device')->parameters(['aparelhos' => 'device'])->middleware('isLogged');
+Route::resource('marcas', App\Http\Controllers\BrandController::class)->names('brand')->parameters(['marcas' => 'brand'])->middleware('isLogged');
+Route::resource('modelos', App\Http\Controllers\TemplateController::class)->names('template')->parameters(['modelos' => 'template'])->middleware('isLogged');

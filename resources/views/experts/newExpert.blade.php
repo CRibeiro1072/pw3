@@ -1,7 +1,7 @@
 @extends('home')
 
 @section('content')
-    <h1>Cadastro de Técnico</h1>
+    <h3>Cadastro de Técnico</h3>
 <form action="{{ route('expert.store') }}" method="post">
     @csrf
     <div class="row">

@@ -1,7 +1,7 @@
 @extends('home')
 
 @section('content')
-    <h1>Edição de Técnico</h1>
+    <h3>Edição de Técnico</h3>
     <form action="{{ route('expert.update', ['expert' => $expert->id]) }}" method="post">
         @csrf
         @method('PUT')
