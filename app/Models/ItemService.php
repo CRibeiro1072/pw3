@@ -14,4 +14,14 @@ class itemService extends Model
         'quantity',
         'value',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

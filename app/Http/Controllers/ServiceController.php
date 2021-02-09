@@ -9,6 +9,7 @@ use App\Models\Device;
 use App\Models\Service;
 use App\Models\Situation;
 use App\Models\Template;
+use App\Models\ItemService;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -58,6 +59,7 @@ class ServiceController extends Controller
         $brands = Brand::all();
         $devices = Device::all();
         $templates = Template::all();
+        $itemServices = ItemService::all();
         return view('services.updateService', [
             'service' => $service,
             'customers' => $customers,
@@ -66,6 +68,7 @@ class ServiceController extends Controller
             'brands' => $brands,
             'devices' => $devices,
             'templates' => $templates,
+            'itemServices' => $itemServices,
         ]);
     }
 

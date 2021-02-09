@@ -15,4 +15,9 @@ class Product extends Model
         'priceCost',
         'salePrice',
     ];
+
+    public function itemServices()
+    {
+        return $this->hasMany(ItemService::class);
+    }
 }

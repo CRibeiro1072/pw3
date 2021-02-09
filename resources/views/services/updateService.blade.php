@@ -73,4 +73,36 @@
             </div>
         </div>
     </form>
+    <br>
+
+    <p><a href="{{route('service.create')}}" class="btn btn-success">Novo Item</a></p>
+    <table class="table table-responsive-xl">
+        <tr>
+            <td>Produto</td>
+            <td>QNTD</td>
+            <td>Valor</td>
+            <td>Total</td>
+            <td>Ações</td>
+        </tr>
+        @foreach($itemServices as $itemService)
+            <tr>
+                <td>{{ $itemService->product->description}}</td>
+                <td>{{ $itemService->quantity }}</td>
+                <td>{{ $itemService->value }}</td>
+                <td>{{ $itemService->value * $itemService->quantity}}</td>
+                <td>
+                    <form action="#"method="#">
+{{--                        {{ route('itemService.destroy', ['itemService' => $itemService->product_id]) }}    --}}
+{{--                        @csrf--}}
+{{--                        @method('DELETE')--}}
+                        <button class="btn btn-danger" alt="Excluir">Excluir</button>
+                        <a href="#" class="btn btn-success">Editar</a>
+                        <a href="#" class="btn btn-primary">Ver</a>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </table>
 @endsection
+{{--{{ route('itemService.edit', ['itemService' => $itemService->product_id]) }}--}}
+{{--{{ route('itemService.show', ['itemService' => $itemService->product_id]) }}--}}

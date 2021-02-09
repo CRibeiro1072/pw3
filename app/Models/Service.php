@@ -50,4 +50,9 @@ class Service extends Model
     {
         return $this->belongsTo(Template::class);
     }
+
+    public function itemServices()
+    {
+        return $this->hasMany(ItemService::class);
+    }
 }
