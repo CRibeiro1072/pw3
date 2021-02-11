@@ -9,7 +9,6 @@ class Situation extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'type',
         'description',
     ];
 

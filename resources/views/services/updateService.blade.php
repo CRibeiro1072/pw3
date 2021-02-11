@@ -45,7 +45,7 @@
         </div>
         <div class="row">
             <div class="col-3">
-                <label for="template_id">Aparelho:</label>
+                <label for="template_id">Modelo:</label>
                 <select name="template_id" id="template_id" class="form-control">
                     @foreach($templates as $template)
                         @if($service->template->id == $template->id)
@@ -66,6 +66,50 @@
                        value="{{ $service->claimedDefect }}">
             </div>
         </div>
+        <div class="row">
+            <div class="col-6">
+                <label for="technicalReport">Defeito Constatado:</label>
+                <input type="text" name="technicalReport" id="" class="form-control"
+                       value="{{ $service->technicalReport }}">
+            </div>
+            <div class="col-6">
+                <label for="expert_id">Técnico reparador:</label>
+                <select name="expert_id" id="expert_id" class="form-control">
+                    @foreach($experts as $expert)
+                        @if($service->expert->id == $expert->id)
+                            <option value="{{$expert->id}}" selected>{{$expert->fullName}}</option>
+                        @else
+                            <option value="{{$expert->id}}">{{$expert->fullName}}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <label for="dateTechnicalReport">Data do orçamento:</label>
+                <input type="date" name="dateTechnicalReport" id="" class="form-control"
+                       value="{{ $service->dateTechnicalReport }}">
+            </div>
+            <div class="col-3">
+                <label for="servicePrice">Valor serviço:</label>
+                <input type="number" step="0.01" name="servicePrice" id="" class="form-control"
+                       value="{{ $service->servicePrice }}">
+
+            </div>
+            <div class="col-6">
+                <label for="situation_id">Situação do serviço:</label>
+                <select name="situation_id" id="situation_id" class="form-control">
+                    @foreach($situations as $situation)
+                        @if($service->situation->id == $situation->id)
+                            <option value="{{$situation->id}}" selected>{{$situation->description}}</option>
+                        @else
+                            <option value="{{$situation->id}}">{{$situation->description}}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+        </div>
         <div class="row" style="margin-top: 10px">
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Salvar</button>
@@ -73,36 +117,4 @@
             </div>
         </div>
     </form>
-    <br>
-
-    <p><a href="{{route('service.create')}}" class="btn btn-success">Novo Item</a></p>
-    <table class="table table-responsive-xl">
-        <tr>
-            <td>Produto</td>
-            <td>QNTD</td>
-            <td>Valor</td>
-            <td>Total</td>
-            <td>Ações</td>
-        </tr>
-        @foreach($itemServices as $itemService)
-            <tr>
-                <td>{{ $itemService->product->description}}</td>
-                <td>{{ $itemService->quantity }}</td>
-                <td>{{ $itemService->value }}</td>
-                <td>{{ $itemService->value * $itemService->quantity}}</td>
-                <td>
-                    <form action="#"method="#">
-{{--                        {{ route('itemService.destroy', ['itemService' => $itemService->product_id]) }}    --}}
-{{--                        @csrf--}}
-{{--                        @method('DELETE')--}}
-                        <button class="btn btn-danger" alt="Excluir">Excluir</button>
-                        <a href="#" class="btn btn-success">Editar</a>
-                        <a href="#" class="btn btn-primary">Ver</a>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-    </table>
 @endsection
-{{--{{ route('itemService.edit', ['itemService' => $itemService->product_id]) }}--}}
-{{--{{ route('itemService.show', ['itemService' => $itemService->product_id]) }}--}}

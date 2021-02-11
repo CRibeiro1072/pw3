@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -9,13 +10,17 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = product::all();
+        $products = product::with('brand')->get();
+//        $products = product::all();
         return view('products.listAllProducts', compact('products'));
     }
 
     public function create()
     {
-        return view('products.newProduct');
+        $brands = Brand::all();
+        return view('products.newProduct', [
+            'brands' => $brands,
+        ]);
     }
 
     public function store(Request $request)
@@ -31,7 +36,11 @@ class ProductController extends Controller
 
     public function edit(product $product)
     {
-        return view('products.updateProduct', compact('product'));
+        $brands = Brand::all();
+        return view('products.updateProduct', [
+            'brands' => $brands,
+            'product' => $product,
+        ]);
     }
 
     public function update(Request $request, product $product)

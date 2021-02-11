@@ -3,41 +3,35 @@
 @section('content')
     <h3>Visualização de Técnico</h3>
     <form>
-        <div class="row">
-            <div class="col-12">
-                <label for="function">Nome:</label>
-                <input type="text" name="function" id="" class="form-control" value="{{ $expert->function }}" disabled>
-            </div>
-        </div>
 
         <div class="row">
-            <div class="col-12">
+            <div class="col-3">
+                <label for="function">Função:</label>
+                <input type="text" name="function" id="" class="form-control" value="{{ $expert->function }}" disabled>
+            </div>
+            <div class="col-9">
                 <label for="fullName">Nome:</label>
                 <input type="text" name="fullName" id="" class="form-control" value="{{ $expert->fullName }}" disabled>
             </div>
         </div>
-
         <div class="row">
-            <div class="col-6">
+            <div class="col-2">
                 <label for="phone">Telefone:</label>
-                <input type="text" name="phone" id="" class="form-control" value="{{ $expert->phone }}" disabled>
+                <input type="number" name="phone" id="" class="form-control" value="{{ $expert->phone }}" disabled>
+            </div>
+            <div class="col-2">
+                <label for="cellPhone">Celular:</label>
+                <input type="number" name="cellPhone" id="" class="form-control" value="{{ $expert->cellPhone }}"
+                       disabled>
             </div>
             <div class="col-6">
-                <label for="cellPhone">Celular:</label>
-                <input type="text" name="cellPhone" id="" class="form-control" value="{{ $expert->cellPhone }}" disabled>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
                 <label for="email">E-Mail:</label>
                 <input type="email" name="email" id="" class="form-control" value="{{ $expert->email }}" disabled>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <label for="percent">E-Mail:</label>
-                <input type="text" name="percent" id="" class="form-control" value="{{ $expert->percent }}" disabled>
+            <div class="col-2">
+                <label for="percent">Porcentagem:</label>
+                <input type="number" step="0.01" name="percent" id="" class="form-control"
+                       value="{{ $expert->percent }}" disabled>
             </div>
         </div>
         <div class="row" style="margin-top: 10px">

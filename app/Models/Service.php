@@ -18,6 +18,7 @@ class Service extends Model
         'serial',
         'claimedDefect',
         'technicalReport',
+        'servicePrice',
         'dateTechnicalReport'
     ];
 

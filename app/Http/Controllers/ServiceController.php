@@ -17,9 +17,7 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::with('customer', 'expert', 'situation', 'brand', 'template', 'device')->get();
-        return view('services.listAllServices', [
-            'services' => $services
-        ]);
+        return view('services.listAllServices', compact('services'));
     }
 
     public function create()

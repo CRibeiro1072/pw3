@@ -1,7 +1,13 @@
 @extends('home')
 @section('content')
-{{--    <h2>Listagem de Clientes</h2>--}}
-    <p><a href="{{route('customer.create')}}" class="btn btn-success">Novo Cliente</a></p>
+    <h3>Consulta de Clientes</h3>
+    <div class="input-group mb-3" style="width: 500px">
+        <input type="text" class="form-control" placeholder="Infome o termo a ser pesquisado" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+            <a href="{{route('customer.create')}}" class="btn btn-success" style="left: 5px">Novo Cliente</a>
+        </div>
+    </div>
 <table class="table table-responsive-xl">
         <tr>
             <td>#ID</td>

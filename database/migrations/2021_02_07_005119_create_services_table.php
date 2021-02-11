@@ -21,8 +21,9 @@ class CreateServicesTable extends Migration
             $table->unsignedBigInteger('device_id');
             $table->unsignedBigInteger('brand_id');
             $table->unsignedBigInteger('template_id')->nullable();
-            $table->String('serial');
+            $table->String('serial')->nullable();
             $table->string('claimedDefect');
+            $table->double('servicePrice')->nullable();
             $table->string('technicalReport')->nullable();
             $table->date('dateTechnicalReport')->nullable();
             $table->timestamps();

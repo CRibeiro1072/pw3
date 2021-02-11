@@ -1,7 +1,14 @@
 @extends('home')
 
 @section('content')
-    <p><a href="{{route('product.create')}}" class="btn btn-success">Novo Produto</a></p>
+    <h3>Consulta de Produtos</h3>
+    <div class="input-group mb-3" style="width: 500px">
+        <input type="text" class="form-control" placeholder="Infome o termo a ser pesquisado" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+            <a href="{{route('product.create')}}" class="btn btn-success" style="left: 5px">Novo Produto</a>
+        </div>
+    </div>
     <table class="table table-responsive-xl">
         <tr>
             <td>#ID</td>
@@ -18,7 +25,7 @@
             <tr>
                 <td>{{ $product->id }}</td>
                 <td>{{ $product->description }}</td>
-                <td>{{ $product->brand }}</td>
+                <td>{{ $product->brand->description }}</td>
                 <td>{{ $product->quantity }}</td>
                 <td>{{ $product->priceCost }}</td>
                 <td>{{ $product->salePrice }}</td>

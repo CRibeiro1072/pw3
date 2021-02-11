@@ -18,4 +18,5 @@ Route::resource('servicos', App\Http\Controllers\ServiceController::class)->name
 Route::resource('aparelhos', App\Http\Controllers\DeviceController::class)->names('device')->parameters(['aparelhos' => 'device'])->middleware('isLogged');
 Route::resource('marcas', App\Http\Controllers\BrandController::class)->names('brand')->parameters(['marcas' => 'brand'])->middleware('isLogged');
 Route::resource('modelos', App\Http\Controllers\TemplateController::class)->names('template')->parameters(['modelos' => 'template'])->middleware('isLogged');
+Route::resource('situacoes', App\Http\Controllers\SituationController::class)->names('situation')->parameters(['situacoes' => 'situation'])->middleware('isLogged');
 Route::resource('itemServicos', App\Http\Controllers\ItemServiceController::class)->names('itemService')->parameters(['itemServicos' => 'itemService'])->middleware('isLogged');

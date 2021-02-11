@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-12">
                 <label for="description">Marca:</label>
-                <input type="text" name="description" id="" class="form-control">
+                <input type="text" name="description" id="" class="form-control" placeholder="Digite a marca">
             </div>
         </div>
 

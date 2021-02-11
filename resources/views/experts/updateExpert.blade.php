@@ -6,40 +6,32 @@
         @csrf
         @method('PUT')
         <div class="row">
-            <div class="col-12">
-                <label for="function">Nome:</label>
+            <div class="col-3">
+                <label for="function">Função:</label>
                 <input type="text" name="function" id="" class="form-control" value="{{ $expert->function }}">
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
+            <div class="col-9">
                 <label for="fullName">Nome:</label>
                 <input type="text" name="fullName" id="" class="form-control" value="{{ $expert->fullName }}">
             </div>
         </div>
-
         <div class="row">
-            <div class="col-6">
+            <div class="col-2">
                 <label for="phone">Telefone:</label>
-                <input type="text" name="phone" id="" class="form-control" value="{{ $expert->phone }}">
+                <input type="number" name="phone" id="" class="form-control" value="{{ $expert->phone }}">
+            </div>
+            <div class="col-2">
+                <label for="cellPhone">Celular:</label>
+                <input type="number" name="cellPhone" id="" class="form-control" value="{{ $expert->cellPhone }}">
             </div>
             <div class="col-6">
-                <label for="cellPhone">Celular:</label>
-                <input type="text" name="cellPhone" id="" class="form-control" value="{{ $expert->cellPhone }}">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
                 <label for="email">E-Mail:</label>
                 <input type="email" name="email" id="" class="form-control" value="{{ $expert->email }}">
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <label for="percent">E-Mail:</label>
-                <input type="text" name="percent" id="" class="form-control" value="{{ $expert->percent }}">
+            <div class="col-2">
+                <label for="percent">Porcentagem:</label>
+                <input type="number" step="0.01" name="percent" id="" class="form-control"
+                       value="{{ $expert->percent }}">
             </div>
         </div>
         <div class="row" style="margin-top: 10px">
