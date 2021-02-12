@@ -21,8 +21,8 @@ Route::resource('modelos', App\Http\Controllers\TemplateController::class)->name
 Route::resource('situacoes', App\Http\Controllers\SituationController::class)->names('situation')->parameters(['situacoes' => 'situation'])->middleware('isLogged');
 Route::resource('itemServicos', App\Http\Controllers\ItemServiceController::class)->names('itemService')->parameters(['itemServicos' => 'itemService'])->middleware('isLogged');
 
-Route::post('service/situation/', [\App\Http\Controllers\ServiceSituationController::class, 'store'])->name('servicesituation.store');
-Route::post('service/product/', [\App\Http\Controllers\ServiceProductController::class, 'store'])->name('serviceproduct.store');
+Route::post('service/situation/', [\App\Http\Controllers\ServiceSituationController::class, 'store'])->name('servicesituation.store')->middleware('isLogged');
+Route::post('service/product/', [\App\Http\Controllers\ServiceProductController::class, 'store'])->name('serviceproduct.store')->middleware('isLogged');
 Route::name('json.')->group(function (){
     Route::get('/produto/{id}', [\App\Http\Controllers\ProductController::class, 'productjson'])->name('produto')->middleware('isLogged');
 });
