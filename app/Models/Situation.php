@@ -12,8 +12,7 @@ class Situation extends Model
         'description',
     ];
 
-    public function situations()
-    {
-        return $this->hasMany(Service::class);
+    public function services(){
+        return $this->belongsToMany(Service::class);
     }
 }

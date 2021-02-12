@@ -21,8 +21,8 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
-    public function itemServices()
+    public function services()
     {
-        return $this->hasMany(ItemService::class);
+        return $this->belongsToMany(Service::class);
     }
 }

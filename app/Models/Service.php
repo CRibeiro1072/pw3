@@ -37,11 +37,6 @@ class Service extends Model
         return $this->belongsTo(Expert::class);
     }
 
-    public function situation()
-    {
-        return $this->belongsTo(Situation::class);
-    }
-
     public function device()
     {
         return $this->belongsTo(Device::class);
@@ -52,8 +47,11 @@ class Service extends Model
         return $this->belongsTo(Template::class);
     }
 
-    public function itemServices()
-    {
-        return $this->hasMany(ItemService::class);
+    public function products(){
+        return $this->belongsToMany(Product::class);
+    }
+
+    public function situations(){
+        return $this->belongsToMany(Situation::class);
     }
 }
