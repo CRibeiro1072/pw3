@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Expert;
 use App\Models\Brand;
 use App\Models\Device;
+use App\Models\Product;
 use App\Models\Service;
 use App\Models\Situation;
 use App\Models\Template;
@@ -16,21 +17,19 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::with('customer', 'expert', 'situation', 'brand', 'template', 'device')->get();
+        $services = Service::with('customer', 'expert', 'brand', 'template', 'device')->get();
         return view('services.listAllServices', compact('services'));
     }
 
     public function create()
     {
         $customers = Customer::all();
-        $situations = Situation::all();
         $experts = Expert::all();
         $brands = Brand::all();
         $devices = Device::all();
         $templates = Template::all();
         return view('services.newService', [
             'customers' => $customers,
-            'situations' => $situations,
             'experts' => $experts,
             'brands' => $brands,
             'devices' => $devices,
@@ -46,13 +45,14 @@ class ServiceController extends Controller
 
     public function show(Service $service)
     {
-        return view('services.listService', compact('service'));
+        $products = Product::all();
+        $situations = Situation::all();
+        return view('services.listService', compact('service', 'products', 'situations'));
     }
 
     public function edit(Service $service)
     {
         $customers = Customer::all();
-        $situations = Situation::all();
         $experts = Expert::all();
         $brands = Brand::all();
         $devices = Device::all();
@@ -61,7 +61,6 @@ class ServiceController extends Controller
         return view('services.updateService', [
             'service' => $service,
             'customers' => $customers,
-            'situations' => $situations,
             'experts' => $experts,
             'brands' => $brands,
             'devices' => $devices,

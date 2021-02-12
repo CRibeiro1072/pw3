@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
             'create' => 'novo',
             'edit' => 'editar'
         ]);
+
         Schema::defaultStringLength(191);
     }
 }

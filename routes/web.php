@@ -20,3 +20,9 @@ Route::resource('marcas', App\Http\Controllers\BrandController::class)->names('b
 Route::resource('modelos', App\Http\Controllers\TemplateController::class)->names('template')->parameters(['modelos' => 'template'])->middleware('isLogged');
 Route::resource('situacoes', App\Http\Controllers\SituationController::class)->names('situation')->parameters(['situacoes' => 'situation'])->middleware('isLogged');
 Route::resource('itemServicos', App\Http\Controllers\ItemServiceController::class)->names('itemService')->parameters(['itemServicos' => 'itemService'])->middleware('isLogged');
+
+Route::post('service/situation/', [\App\Http\Controllers\ServiceSituationController::class, 'store'])->name('servicesituation.store');
+Route::post('service/product/', [\App\Http\Controllers\ServiceProductController::class, 'store'])->name('serviceproduct.store');
+Route::name('json.')->group(function (){
+    Route::get('/produto/{id}', [\App\Http\Controllers\ProductController::class, 'productjson'])->name('produto')->middleware('isLogged');
+});

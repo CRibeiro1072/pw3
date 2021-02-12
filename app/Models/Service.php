@@ -9,7 +9,6 @@ class Service extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'situation_id',
         'customer_id',
         'expert_id',
         'device_id',
@@ -48,10 +47,10 @@ class Service extends Model
     }
 
     public function products(){
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class, 'service_product')->using(ServiceProduct::class)->withPivot('quantity', 'value')->withTimestamps();
     }
 
     public function situations(){
-        return $this->belongsToMany(Situation::class);
+        return $this->belongsToMany(Situation::class, 'service_situation')->using(ServiceSituation::class)->withTimestamps();
     }
 }

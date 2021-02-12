@@ -54,4 +54,9 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('product.index');
     }
+
+    public function productjson($id){
+        $product = Product::findOrFail($id);
+        return response()->json($product);
+    }
 }
