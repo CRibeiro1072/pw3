@@ -15,7 +15,6 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('situation_id')->nullable();
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('expert_id')->nullable();
             $table->unsignedBigInteger('device_id');
@@ -28,7 +27,6 @@ class CreateServicesTable extends Migration
             $table->date('dateTechnicalReport')->nullable();
             $table->timestamps();
 
-            $table->foreign('situation_id')->references('id')->on('situations')->onDelete('CASCADE');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('CASCADE');
             $table->foreign('expert_id')->references('id')->on('experts')->onDelete('CASCADE');
             $table->foreign('device_id')->references('id')->on('devices')->onDelete('CASCADE');
