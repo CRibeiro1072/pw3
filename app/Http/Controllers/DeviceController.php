@@ -42,6 +42,9 @@ class DeviceController extends Controller
 
     public function destroy(Device $device)
     {
+        if ($device->services->count()){
+            return back()->withErrors('Não foi possível excluir. Este aparelho está associado a um serviço.');
+        }
         $device->delete();
         return redirect()->route('device.index');
     }

@@ -23,6 +23,6 @@ class Product extends Model
 
     public function services()
     {
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(Service::class, 'service_product')->using(ServiceProduct::class);
     }
 }

@@ -42,6 +42,9 @@ class ExpertController extends Controller
 
     public function destroy(Expert $expert)
     {
+        if ($expert->services->count()){
+            return back()->withErrors('Não foi possível excluir. Existe um serviço associado a esse técnico.');
+        }
         $expert->delete();
         return redirect()->route('expert.index');
     }

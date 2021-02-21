@@ -13,6 +13,6 @@ class Situation extends Model
     ];
 
     public function services(){
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(Service::class, 'service_situation')->using(ServiceSituation::class);
     }
 }

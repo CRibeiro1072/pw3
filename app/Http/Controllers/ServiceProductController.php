@@ -13,4 +13,10 @@ class ServiceProductController extends Controller
         ServiceProduct::create($request->all());
         return redirect()->route('service.show', Service::findOrFail($request->input('service_id')));
     }
+
+    public function destroy($serviceid, $productid){
+        $service = Service::findOrFail($serviceid);
+        $service->products()->detach($productid);
+        return redirect()->route('service.show', Service::findOrFail($service->id));
+    }
 }

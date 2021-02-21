@@ -22,6 +22,8 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 </head>
 
 <body id="page-top">
@@ -165,7 +167,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Claudinei</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Teste</span>
                             {{--                            {{ $LoggedUserInfo->name }}--}}
                             {{--                            {{$user = \App\Models\User::findOrFail(session()->get('LoggedUser'))}}--}}
                             <img class="img-profile rounded-circle"
@@ -196,6 +198,15 @@
 
                 <!-- Page Heading -->
                 <!-- Aqui vou adicionar um recurso para introduzir sempre neste lugar os forms que eu criar -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @yield('content')
 
             <!-- Comentei aqui <h1 class="h3 mb-4 text-gray-800">Blank Page</h1> -->

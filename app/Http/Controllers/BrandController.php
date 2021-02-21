@@ -43,6 +43,14 @@ class BrandController extends Controller
 
     public function destroy(Brand $brand)
     {
+        if ($brand->services->count()){
+            return back()->withErrors('Não foi possível excluir. Esta marca está associada a um serviço.');
+        }else{
+            if ($brand->products->count()){
+                return back()->withErrors('Não foi possível excluir. Esta marca está associada a um serviço.');
+            }
+        }
+
         $brand->delete();
         return redirect()->route('brand.index');
     }

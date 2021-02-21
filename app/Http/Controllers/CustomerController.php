@@ -42,6 +42,9 @@ class CustomerController extends Controller
 
     public function destroy(Customer $customer)
     {
+        if ($customer->services->count()){
+            return back()->withErrors('Não foi possível excluir. Existe um serviço associado a esse cliente.');
+        }
         $customer->delete();
         return redirect()->route('customer.index');
     }

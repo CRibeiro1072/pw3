@@ -23,6 +23,8 @@ Route::resource('itemServicos', App\Http\Controllers\ItemServiceController::clas
 
 Route::post('service/situation/', [\App\Http\Controllers\ServiceSituationController::class, 'store'])->name('servicesituation.store')->middleware('isLogged');
 Route::post('service/product/', [\App\Http\Controllers\ServiceProductController::class, 'store'])->name('serviceproduct.store')->middleware('isLogged');
+Route::delete('service/{serviceid}/product/{productid}', [\App\Http\Controllers\ServiceProductController::class, 'destroy'])->name('serviceproduct.destroy')->middleware('isLogged');
+Route::delete('service/{serviceid}/situation/{situationid}', [\App\Http\Controllers\ServiceSituationController::class, 'destroy'])->name('servicesituation.destroy')->middleware('isLogged');
 Route::name('json.')->group(function (){
     Route::get('/produto/{id}', [\App\Http\Controllers\ProductController::class, 'productjson'])->name('produto')->middleware('isLogged');
 });

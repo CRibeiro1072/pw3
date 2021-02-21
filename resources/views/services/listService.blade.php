@@ -93,13 +93,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($service->products as $product)
+                @foreach($service->products as $serviceProduct)
                     <tr>
-                        <td>{{$product->created_at}}</td>
-                        <td>{{$product->description}}</td>
-                        <td>{{$product->pivot->quantity}}</td>
-                        <td>{{$product->pivot->value}}</td>
-                        <td></td>
+                        <td>{{$serviceProduct->created_at}}</td>
+                        <td>{{$serviceProduct->description}}</td>
+                        <td>{{$serviceProduct->pivot->quantity}}</td>
+                        <td>{{$serviceProduct->pivot->value}}</td>
+                        <td>
+                            <form method="post" action="{{route('serviceproduct.destroy', ['serviceid'=>$service->id, 'productid'=>$serviceProduct->pivot->product_id])}}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-danger" alt="Excluir" title="Excluir"><i class="material-icons">delete</i></button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -130,7 +136,13 @@
                         <tr>
                             <td>{{$situation->created_at}}</td>
                             <td>{{$situation->description}}</td>
-                            <td></td>
+                            <td>
+                                <form method="post" action="{{route('servicesituation.destroy', ['serviceid'=>$service->id, 'situationid'=>$situation->pivot->situation_id])}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-outline-danger" alt="Excluir" title="Excluir"><i class="material-icons">delete</i></button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

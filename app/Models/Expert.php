@@ -17,7 +17,7 @@ class Expert extends Model
         'percent',
     ];
 
-    public function experts()
+    public function services()
     {
         return $this->hasMany(Service::class);
     }

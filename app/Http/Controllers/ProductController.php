@@ -51,6 +51,9 @@ class ProductController extends Controller
 
     public function destroy(product $product)
     {
+        if ($product->services->count()){
+            return back()->withErrors('Não foi possível excluir. Este produto está associado a um serviço.');
+        }
         $product->delete();
         return redirect()->route('product.index');
     }

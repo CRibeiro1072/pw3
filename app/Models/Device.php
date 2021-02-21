@@ -12,7 +12,7 @@ class Device extends Model
         'description',
     ];
 
-    public function devices()
+    public function services()
     {
         return $this->hasMany(Service::class);
     }

@@ -13,4 +13,10 @@ class ServiceSituationController extends Controller
         ServiceSituation::create($request->all());
         return redirect()->route('service.show', Service::findOrFail($request->input('service_id')));
     }
+
+    public function destroy($serviceid, $situationid){
+        $service = Service::findOrFail($serviceid);
+        $service->situations()->detach($situationid);
+        return redirect()->route('service.show', Service::findOrFail($service->id));
+    }
 }

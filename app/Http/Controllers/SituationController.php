@@ -42,6 +42,9 @@ class SituationController extends Controller
 
     public function destroy(Situation $situation)
     {
+        if ($situation->services->count()){
+            return back()->withErrors('Não foi possível excluir. Esta situação está associada a um serviço.');
+        }
         $situation->delete();
         return redirect()->route('situation.index');
     }

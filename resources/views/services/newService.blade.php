@@ -24,6 +24,17 @@
                 </select>
             </div>
             <div class="col-3">
+                <label for="expert_id">Técnico:</label>
+                <select name="expert_id" id="expert_id" class="form-control">
+                    <option>Selecione o técnico</option>
+                    @foreach($experts as $expert)
+                        <option value="{{$expert->id}}">{{$expert->fullName}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
                 <label for="brand_id">Marca:</label>
                 <select name="brand_id" id="brand_id" class="form-control">
                     <option>Selecione a marca</option>
@@ -32,8 +43,6 @@
                     @endforeach
                 </select>
             </div>
-        </div>
-        <div class="row">
             <div class="col-3">
                 <label for="template_id">Modelo:</label>
                 <select name="template_id" id="template_id" class="form-control">
@@ -43,13 +52,15 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-3">
+            <div class="col-6">
                 <label for="serial">Serial:</label>
                 <input type="text" name="serial" id="" class="form-control" placeholder="Infome o número de série">
             </div>
-            <div class="col-6">
+        </div>
+        <div class="row">
+            <div class="col-12">
                 <label for="claimedDefect">Defeito reclamado:</label>
-                <input type="text" name="claimedDefect" id="" class="form-control" placeholder="Infome o defeito reclamado pelo o cliente">
+                <textarea name="claimedDefect" id="" class="form-control" placeholder="Infome o defeito reclamado pelo o cliente"></textarea>
             </div>
         </div>
         <div class="row" style="margin-top: 10px">

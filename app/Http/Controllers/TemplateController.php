@@ -42,6 +42,9 @@ class TemplateController extends Controller
 
     public function destroy(Template $template)
     {
+        if ($template->services->count()){
+            return back()->withErrors('Não foi possível excluir. Este modelo está associado a um serviço.');
+        }
         $template->delete();
         return redirect()->route('template.index');
     }
