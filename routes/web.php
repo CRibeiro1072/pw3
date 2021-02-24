@@ -28,3 +28,11 @@ Route::delete('service/{serviceid}/situation/{situationid}', [\App\Http\Controll
 Route::name('json.')->group(function (){
     Route::get('/produto/{id}', [\App\Http\Controllers\ProductController::class, 'productjson'])->name('produto')->middleware('isLogged');
 });
+Route::get('service/cancel/finished/{serviceid}', [\App\Http\Controllers\ServiceController::class, 'cancelFinished'])->name('service.cancelfinished')->middleware('isLogged');
+Route::get('service/cancel/approval/{serviceid}', [\App\Http\Controllers\ServiceController::class, 'cancelApproval'])->name('service.cancelapproval')->middleware('isLogged');
+
+
+Route::get('service/approval/{id}', [\App\Http\Controllers\ServiceController::class, 'approvalService'])->name('service.approval');
+Route::get('service/sendemail/approval/{id}', [\App\Http\Controllers\ServiceController::class, 'enviarEmailSolicitarAprovacao'])->name('service.sendemailapproval');
+
+Route::get('service/sendemail/finished/{id}', [\App\Http\Controllers\ServiceController::class, 'enviarEmailComunicarFinalizacao'])->name('service.sendemailfinished');

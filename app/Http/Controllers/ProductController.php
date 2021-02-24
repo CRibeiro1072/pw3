@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
 use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         Product::create($request->all());
         return redirect()->route('product.index');
@@ -43,7 +44,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Request $request, product $product)
+    public function update(StoreProductRequest $request, product $product)
     {
         Product::where('id', $product->id)->update($request->except('_token', '_method'));
         return redirect()->route('product.index');

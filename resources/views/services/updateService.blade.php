@@ -97,18 +97,6 @@
                        value="{{ $service->servicePrice }}">
 
             </div>
-            <div class="col-6">
-                <label for="situation_id">Situação do serviço:</label>
-                <select name="situation_id" id="situation_id" class="form-control">
-                    @foreach($situations as $situation)
-                        @if($service->situation->id == $situation->id)
-                            <option value="{{$situation->id}}" selected>{{$situation->description}}</option>
-                        @else
-                            <option value="{{$situation->id}}">{{$situation->description}}</option>
-                        @endif
-                    @endforeach
-                </select>
-            </div>
         </div>
         <div class="row" style="margin-top: 10px">
             <div class="col-12">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTemplateRequest;
 use App\Models\Template;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class TemplateController extends Controller
         return view('templates.newTemplate');
     }
 
-    public function store(Request $request)
+    public function store(StoreTemplateRequest $request)
     {
         Template::create($request->all());
         return redirect()->route('template.index');
@@ -34,7 +35,7 @@ class TemplateController extends Controller
         return view('templates.updateTemplate', compact('template'));
     }
 
-    public function update(Request $request, Template $template)
+    public function update(StoreTemplateRequest $request, Template $template)
     {
         Template::where('id', $template->id)->update($request->except('_token', '_method'));
         return redirect()->route('template.index');

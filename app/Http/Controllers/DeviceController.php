@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDeviceRequest;
 use App\Models\Device;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class DeviceController extends Controller
         return view('devices.newDevice');
     }
 
-    public function store(Request $request)
+    public function store(StoreDeviceRequest $request)
     {
         Device::create($request->all());
         return redirect()->route('device.index');
@@ -34,7 +35,7 @@ class DeviceController extends Controller
         return view('devices.updateDevice', compact('device'));
     }
 
-    public function update(Request $request, Device $device)
+    public function update(StoreDeviceRequest $request, Device $device)
     {
         Device::where('id', $device->id)->update($request->except('_token', '_method'));
         return redirect()->route('device.index');

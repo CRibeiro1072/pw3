@@ -4,8 +4,25 @@
     <h3>Visualização de Serviço</h3>
 
     <a href="{{route('service.index')}}" class="btn btn-danger">Voltar</a>
-    <a href="" class="btn btn-outline-primary">Solicitar aprovação</a>
-    <a href="" class="btn btn-outline-dark">Finalizar</a>
+    @if($service->approval == 1)
+        @if($service->finished == 1)
+            <a href="" class="btn btn-primary">Orçamento aprovado</a>
+        @else
+            <button class="btn btn-primary" data-record-id="{{$service->id}}" data-toggle="modal" data-target="#confirm-cancel-approval" alt="Cancelar aprovação" title="Cancelar aprovação">
+                Orçamento aprovado
+            </button>
+        @endif
+    @else
+        <a href="{{route('service.sendemailapproval', $service->id)}}" class="btn btn-outline-primary">Solicitar aprovação</a>
+    @endif
+
+    @if($service->finished == 1)
+        <button class="btn btn-dark" data-record-id="{{$service->id}}" data-toggle="modal" data-target="#confirm-cancel-finished" alt="Cancelar finalização" title="Cancelar finalização">
+            Orçamento finalizado
+        </button>
+    @else
+        <a href="{{route('service.sendemailfinished', $service->id)}}" class="btn btn-outline-dark">Finalizar</a>
+    @endif
 
     <form>
         <div class="row">
@@ -61,7 +78,7 @@
             </div>
             <div class="col-3">
                 <label for="servicePrice">Valor do serviço:</label>
-                <input type="text" name="servicePrice" id="" class="form-control" value="{{ $service->servicePrice }}" disabled>
+                <input type="text" name="servicePrice" id="" class="form-control" value="{{ number_format($service->servicePrice, 2, ',', '.') }}" disabled>
             </div>
         </div>
     </form>
@@ -69,6 +86,8 @@
     
     <div class="row" style="margin-top: 30px">
         <div class="col-6">
+            <h3>Itens da OS</h3>
+            @if($service->finished == 0)
             <form method="post" action="{{route('serviceproduct.store')}}" class="form-inline">
                 @csrf
                 <input type="hidden" name="service_id" value="{{$service->id}}">
@@ -82,6 +101,7 @@
                 <input type="number" name="value" id="salePrice" class="form-control" placeholder="Valor Unit." readonly="true" style="margin-left: 5px">
                 <button class="btn btn-success" style="margin-left: 5px">Adicionar</button>
             </form>
+            @endif
             <table class="table table-hover" style="margin-top: 10px">
                 <thead>
                     <tr>
@@ -95,16 +115,18 @@
                 <tbody>
                 @foreach($service->products as $serviceProduct)
                     <tr>
-                        <td>{{$serviceProduct->created_at}}</td>
+                        <td>{{date('d/m/Y', strtotime($serviceProduct->created_at))}}</td>
                         <td>{{$serviceProduct->description}}</td>
-                        <td>{{$serviceProduct->pivot->quantity}}</td>
-                        <td>{{$serviceProduct->pivot->value}}</td>
+                        <td>{{number_format($serviceProduct->pivot->quantity, 2, ',', '.')}}</td>
+                        <td>{{number_format($serviceProduct->pivot->value, 2, ',', '.')}}</td>
                         <td>
+                            @if($service->finished == 0)
                             <form method="post" action="{{route('serviceproduct.destroy', ['serviceid'=>$service->id, 'productid'=>$serviceProduct->pivot->product_id])}}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger" alt="Excluir" title="Excluir"><i class="material-icons">delete</i></button>
                             </form>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -112,6 +134,8 @@
             </table>
         </div>
         <div class="col-6">
+            <h3>Situações da OS</h3>
+            @if($service->finished == 0)
             <form method="post" action="{{route('servicesituation.store')}}" class="form-inline">
                 @csrf
                 <input type="hidden" name="service_id" value="{{$service->id}}">
@@ -123,6 +147,7 @@
                 </select>
                 <button type="submit" class="btn btn-success" style="margin-left: 5px">Adicionar</button>
             </form>
+            @endif
             <table class="table table-hover" style="margin-top: 10px">
                 <thead>
                 <tr>
@@ -134,14 +159,16 @@
                 <tbody>
                     @foreach($service->situations as $situation)
                         <tr>
-                            <td>{{$situation->created_at}}</td>
+                            <td>{{date('d/m/Y', strtotime($situation->created_at))}}</td>
                             <td>{{$situation->description}}</td>
                             <td>
+                                @if($service->finished == 0)
                                 <form method="post" action="{{route('servicesituation.destroy', ['serviceid'=>$service->id, 'situationid'=>$situation->pivot->situation_id])}}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger" alt="Excluir" title="Excluir"><i class="material-icons">delete</i></button>
                                 </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -151,6 +178,38 @@
     </div>
 @endsection
 @section('scripts')
+    <div class="modal fade" id="confirm-cancel-finished" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Confirmar Finalização</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Deseja realmente cancelar a finalização dessa OS?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success btn-ok">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="confirm-cancel-approval" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Confirmar Aprovação</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Deseja realmente cancelar a aprovação dessa OS pelo Cliente?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success btn-ok">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         function formatarValor(valor) {
             var str = parseFloat(valor).toFixed(2);
@@ -173,6 +232,60 @@
                     }
                 });
             });
+        });
+    </script>
+
+    <script>
+        $('#confirm-cancel-finished').on('click', '.btn-ok', function(e) {
+            var $modalDiv = $(e.delegateTarget);
+            var id = $(this).data('recordId');
+            $.ajax({
+                url: "{{url('service/cancel/finished')}}" + '/' + id,
+                type: 'GET',
+                data: {
+                    "id": id,
+                },
+                dataType: 'html',
+                success: function (){
+                    location.reload();
+                }
+            });
+            // $.post('/api/record/' + id).then()
+            $modalDiv.addClass('loading');
+            setTimeout(function() {
+                $modalDiv.modal('hide').removeClass('loading');
+            }, 1000)
+        });
+        $('#confirm-cancel-finished').on('show.bs.modal', function(e) {
+            var data = $(e.relatedTarget).data();
+            $('.title', this).text(data.recordTitle);
+            $('.btn-ok', this).data('recordId', data.recordId);
+        });
+
+        $('#confirm-cancel-approval').on('click', '.btn-ok', function(e) {
+            var $modalDiv = $(e.delegateTarget);
+            var id = $(this).data('recordId');
+            $.ajax({
+                url: "{{url('service/cancel/approval')}}" + '/' + id,
+                type: 'GET',
+                data: {
+                    "id": id,
+                },
+                dataType: 'html',
+                success: function (){
+                    location.reload();
+                }
+            });
+            // $.post('/api/record/' + id).then()
+            $modalDiv.addClass('loading');
+            setTimeout(function() {
+                $modalDiv.modal('hide').removeClass('loading');
+            }, 1000)
+        });
+        $('#confirm-cancel-approval').on('show.bs.modal', function(e) {
+            var data = $(e.relatedTarget).data();
+            $('.title', this).text(data.recordTitle);
+            $('.btn-ok', this).data('recordId', data.recordId);
         });
     </script>
 @endsection

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCustomerRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class CustomerController extends Controller
         return view('customers.newCustomer');
     }
 
-    public function store(Request $request)
+    public function store(StoreCustomerRequest $request)
     {
         Customer::create($request->all());
         return redirect()->route('customer.index');
@@ -34,7 +35,7 @@ class CustomerController extends Controller
         return view('customers.updateCustomer', compact('customer'));
     }
 
-    public function update(Request $request, Customer $customer)
+    public function update(StoreCustomerRequest $request, Customer $customer)
     {
         Customer::where('id', $customer->id)->update($request->except('_token', '_method'));
         return redirect()->route('customer.index');

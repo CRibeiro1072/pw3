@@ -64,6 +64,7 @@ class UserAuthController extends Controller
 
     function home()
     {
+        $data = array();
         if (session()->has('LoggedUser')){
             $user = DB::table('users')
                      ->where('id', session('LoggedUser'))
@@ -72,7 +73,7 @@ class UserAuthController extends Controller
                 'LoggedUserInfo' => $user
             ];
         }
-        return view('home', $data);
+        return view('home', compact('data'));
     }
 
     function logout()

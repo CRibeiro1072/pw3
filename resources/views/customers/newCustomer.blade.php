@@ -21,7 +21,7 @@
             </div>
             <div class="col-2">
                 <label for="state">UF:</label>
-                <input type="text" name="state" id="" class="form-control" placeholder="Digite o estado">
+                <input type="text" name="state" maxlength="2" id="" class="form-control text-uppercase" placeholder="Digite o estado">
             </div>
         </div>
 

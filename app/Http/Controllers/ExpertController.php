@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreExpertRequest;
 use App\Models\Expert;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class ExpertController extends Controller
         return view('experts.newExpert');
     }
 
-    public function store(Request $request)
+    public function store(StoreExpertRequest $request)
     {
         Expert::create($request->all());
         return redirect()->route('expert.index');

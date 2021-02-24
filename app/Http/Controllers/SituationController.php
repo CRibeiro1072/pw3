@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSituationRequest;
 use App\Models\Situation;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class SituationController extends Controller
         return view('situations.newSituation');
     }
 
-    public function store(Request $request)
+    public function store(StoreSituationRequest $request)
     {
         Situation::create($request->all());
         return redirect()->route('situation.index');
@@ -34,7 +35,7 @@ class SituationController extends Controller
         return view('situations.updateSituation', compact('situation'));
     }
 
-    public function update(Request $request, Situation $situation)
+    public function update(StoreSituationRequest $request, Situation $situation)
     {
         Situation::where('id', $situation->id)->update($request->except('_token', '_method'));
         return redirect()->route('situation.index');

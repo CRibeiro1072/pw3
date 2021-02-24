@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBrandRequest;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class BrandController extends Controller
         return view('brands.newBrand');
     }
 
-    public function store(Request $request)
+    public function store(StoreBrandRequest $request)
     {
         Brand::create($request->all());
         return redirect()->route('brand.index');
@@ -35,7 +36,7 @@ class BrandController extends Controller
         return view('brands.updateBrand', compact('brand'));
     }
 
-    public function update(Request $request, Brand $brand)
+    public function update(StoreBrandRequest $request, Brand $brand)
     {
         Brand::where('id', $brand->id)->update($request->except('_token', '_method'));
         return redirect()->route('brand.index');
