@@ -167,7 +167,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Teste</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{\Illuminate\Support\Facades\Auth::user()->name}}</span>
                             {{--                            {{ $LoggedUserInfo->name }}--}}
                             {{--                            {{$user = \App\Models\User::findOrFail(session()->get('LoggedUser'))}}--}}
                             <img class="img-profile rounded-circle"
@@ -252,7 +252,10 @@
             <div class="modal-body">Selecione "Sair" abaixo se estiver pronto para encerrar sua sessão atual.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" href="logout">Sair</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="btn btn-primary" type="submit">Sair</button>
+                </form>
             </div>
         </div>
     </div>
